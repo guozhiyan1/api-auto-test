@@ -132,7 +132,7 @@ if __name__ == '__main__':
     logging.info(f"参数，{project_name}，{notify_key}")
 
     # 获取执行结果
-    allureReportPath = f"/root/.jenkins/workspace/{project_name}/allure-report/data/behaviors.csv"
+    allureReportPath = f"/var/lib/jenkins/workspace/api_auto_test/report/{project_name}/allure-report/data/behaviors.csv"
     logging.info(f"报告路径：{allureReportPath}")
     total_case, pass_case, failed_case = get_case_num(allureReportPath)
     pass_rate = "%.2f" % (pass_case / total_case * 100) + "%"
