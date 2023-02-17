@@ -5,10 +5,10 @@ import requests
 import pandas as pd
 import time
 import sys
+
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(base_path)
 from untils.db_tool import updateDBData
-
 
 # 机器人key
 keyDict = {
@@ -119,7 +119,7 @@ def sendMsgRobot(project_name, notify_key, pass_rate):
 
     # 机器人发送消息
     logging.info(send_message)
-    response = requests.post(url=send_url, headers=headers, json=send_message)
+    response = requests.post(url=send_url, headers=headers, json=send_message, verify=False)
     logging.info(response.json())
 
 
