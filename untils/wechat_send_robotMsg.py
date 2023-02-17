@@ -78,7 +78,7 @@ def sendMsgRobot(project_name, notify_key, pass_rate):
     """
 
     # 报告路径
-    allureReport = f"http://172.28.252.254:8080/job/{project_name}/allure/"
+    allureReport = f"http://47.101.221.124:8080/job/{project_name}/allure/"
 
     # 消息接收人
     upper_project_name = project_name.lower()
@@ -138,7 +138,7 @@ if __name__ == '__main__':
     pass_rate = "%.2f" % (pass_case / total_case * 100) + "%"
 
     # 执行数据入库
-    saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate)
+    # saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate)
 
     # 发送消息
     notify_key_list = notify_key.split(',')
