@@ -138,7 +138,7 @@ if __name__ == '__main__':
     pass_rate = "%.2f" % (pass_case / total_case * 100) + "%"
 
     # 执行数据入库
-    # saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate)
+    saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate)
 
     # 发送消息
     notify_key_list = notify_key.split(',')

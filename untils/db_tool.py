@@ -74,9 +74,9 @@ def updateDBData(env, db, sql):
         password = "Mysql@1234"
         port = 3306
     if 'qa' == env:
-        host = "123.57.238.199"
+        host = "47.101.221.124"
         user = "root"
-        password = "12345678"
+        password = "Mysql@1234"
         port = 3306
 
     # 连接数据库
