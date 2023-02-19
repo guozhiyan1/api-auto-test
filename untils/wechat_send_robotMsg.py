@@ -12,9 +12,7 @@ from untils.db_tool import updateDBData
 
 # 机器人key
 keyDict = {
-    # "test": "e9a62b13-5c43-45ad-ba74-4619be336f12"
-    # 调试用
-    "test": "e9a62b13-5c43-45ad-ba74-4619be336f121"
+    "test": "e9a62b13-5c43-45ad-ba74-4619be336f12"
 }
 # 测试联系人
 tester_contact = {
