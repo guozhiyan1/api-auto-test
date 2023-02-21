@@ -18,7 +18,7 @@ class TestUser:
     @pytest.mark.test
     @pytest.mark.p0
     def test_auth_login(self):
-        with allure.step("授权登录"):
+        with allure.step("调用【授权登录】接口"):
             response = gbl.userObj.auth_login()
             data = response['data']
             assert '' != data
@@ -28,7 +28,7 @@ class TestUser:
     @pytest.mark.test
     @pytest.mark.p0
     def test_auth_login_cmcc(self):
-        with allure.step("授权登录 - 云南和生活"):
+        with allure.step("调用【授权登录 - 云南和生活】接口"):
             response = gbl.userObj.auth_login_cmcc()
             data = response['data']
             assert '' != data
@@ -41,7 +41,7 @@ class TestUser:
         with allure.step("前置数据处理"):
             sql = f"""UPDATE nu_behavior SET delete_flag =1  WHERE source='H5' AND user_ref='221125144616547003993168';"""
             updateDBData(gbl.env, 'benefits_test', sql)
-        with allure.step("用户行为"):
+        with allure.step("调用【用户行为】接口"):
             response = gbl.userObj.behavior(user_id='221125144616547003993168')
             data = response['data']
             assert 1 == data
@@ -57,7 +57,7 @@ class TestUser:
     @pytest.mark.test
     @pytest.mark.p0
     def test_getUser(self):
-        with allure.step("获取用户信息"):
+        with allure.step("调用【获取用户信息】接口"):
             response = gbl.userObj.get_user()
             data = response['data']
             res_phone_no = data["phoneNo"]
