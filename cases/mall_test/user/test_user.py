@@ -46,7 +46,7 @@ class TestUser:
             data = response['data']
             assert 1 == data
         with allure.step("校验行为表数据"):
-            sql = f"""SELECT behavior_type,create_time FROM nu_behavior WHERE source='H5' AND user_ref='221125144616547003993168' AND 
+            sql = f"""SELECT behavior_type FROM nu_behavior WHERE source='H5' AND user_ref='221125144616547003993168' AND 
             delete_flag=0  ORDER BY create_time DESC LIMIT 1;"""
             res = selectDBData(gbl.env, 'benefits_test', sql)
             behavior_type = res[0][0]
