@@ -24,13 +24,14 @@ class BaseApi(object):
         res = requests.get(url, params=params, headers=headers, verify=False)
         response = res.json()
         end = time()  # 记录执行完成时间
+        api_time = '%.2f' % (end - start)
 
         # 打印日志
         logger().info(f"{'-' * 100}")
-        logger().warning(f"接口名称：{content}，请求时间：{end - start}秒")
+        logger().warning(f"接口名称：{content}，请求时间：{api_time}秒")
         logger().info(f"接口地址：{url}")
         logger().info(f"请求参数：{params}")
-        logger().info(f"请求响应：{response}")
+        logger().info(f"请求响应：{json.dumps(response)}")
 
         # 接口发生异常，无msg字段，捕获打印接口返回
         try:
@@ -68,13 +69,14 @@ class BaseApi(object):
         res = requests.post(url, data=params, headers=headers)
         response = res.json()
         end = time()  # 记录执行完成时间
+        api_time = '%.2f' % (end - start)
 
         # 打印日志
         logger().info(f"{'=' * 100}")
-        logger().warning(f"接口名称：{content}，请求时间：{end - start}秒")
+        logger().warning(f"接口名称：{content}，请求时间：{api_time}秒")
         logger().info(f"接口地址：{url}")
         logger().info(f"请求参数：{params}")
-        logger().info(f"请求响应：{response}")
+        logger().info(f"请求响应：{json.dumps(response)}")
 
         # 接口发生异常，无msg字段，捕获打印接口返回
         try:
