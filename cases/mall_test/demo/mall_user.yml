@@ -1,7 +1,0 @@
-test:
-  # 域名
-  mall_domain: "http://121.41.220.186:30000/mall-api"
-
-uat:
-
-prod:

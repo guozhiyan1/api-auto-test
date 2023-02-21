@@ -16,7 +16,6 @@ class TestUser:
     @allure.story("授权登录")
     @allure.title("授权登录")
     @pytest.mark.test
-    @pytest.mark.p0
     def test_auth_login(self):
         with allure.step("授权登录"):
             response = gbl.userObj.auth_login()
@@ -26,7 +25,6 @@ class TestUser:
     @allure.story("授权登录 - 云南和生活")
     @allure.title("授权登录 - 云南和生活")
     @pytest.mark.test
-    @pytest.mark.p0
     def test_auth_login_cmcc(self):
         with allure.step("授权登录 - 云南和生活"):
             response = gbl.userObj.auth_login_cmcc()
@@ -36,7 +34,6 @@ class TestUser:
     @allure.story("用户行为")
     @allure.title("用户行为")
     @pytest.mark.test
-    @pytest.mark.p0
     def test_behavior(self):
         with allure.step("前置数据处理"):
             sql = f"""UPDATE nu_behavior SET delete_flag =1  WHERE source='H5' AND user_ref='221125144616547003993168';"""
@@ -55,7 +52,6 @@ class TestUser:
     @allure.story("获取用户信息")
     @allure.title("获取用户信息")
     @pytest.mark.test
-    @pytest.mark.p0
     def test_getUser(self):
         with allure.step("获取用户信息"):
             response = gbl.userObj.get_user()
