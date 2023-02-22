@@ -42,25 +42,45 @@ def delta_datetime(days=None, months=None, years=None, hours=None, minutes=None,
     return now_date
 
 
+def check_list_value(l1, l2, key, check_type=True):
+    """
+    断言list-value
+    :param l1:期望结果
+    :param l2:实际结果
+    :param key:
+    :param check_type: True-相等，False-不等
+    :return:
+    """
+    for i in range(len(l2)):
+        v1 = l1[i][key] == '' and '空' or l1[i][key]
+        v2 = l2[i][key]
+        if check_type:
+            pytest.assume(v1 == v2, f"【断言结果】--> 期望结果：{v1}, 实际结果：{v2}")
+            logger().info(f"【断言结果】--> 期望结果：{v1}, 实际结果：{v2}")
+        else:
+            pytest.assume(v1 != v2, f"【断言结果】--> 期望结果：不为{v1}, 实际结果：{v2}")
+            logger().info(f"【断言结果】--> 期望结果：不为{v1}, 实际结果：{v2}")
+
+
 def check_value_true(v1, v2):
-    '''
+    """
     断言为True
     :param v1: 期望结果
     :param v2: 实际结果
     :return:
-    '''
+    """
     v1 = v1 == '' and '空' or v1
     pytest.assume(v1 == v2, f"【断言结果】--> 期望结果：{v1}, 实际结果：{v2}")
     logger().info(f"【断言结果】--> 期望结果：{v1}, 实际结果：{v2}")
 
 
 def check_value_false(v1, v2):
-    '''
+    """
     断言为Fasle
     :param v1: 期望结果
     :param v2: 实际结果
     :return:
-    '''
+    """
     v1 = v1 == '' and '空' or v1
     pytest.assume(v1 != v2, f"【断言结果】--> 期望结果：不等于{v1}, 实际结果：{v2}")
     logger().info(f"【断言结果】--> 期望结果：不等于{v1}, 实际结果：{v2}")

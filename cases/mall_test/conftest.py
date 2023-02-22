@@ -4,6 +4,9 @@ import sys
 import os
 
 from service.mall.dataConfig.dataConfig_services import DataConfigClass
+from service.mall.home.home_services import HomeClass
+from service.mall.order.order_services import OrderClass
+from service.mall.product.product_services import ProductClass
 from service.mall.tracking.tracking_services import TrackingClass
 from service.mall.user.user_services import UserClass
 from untils.log_helper import logger
@@ -41,3 +44,6 @@ def auth_login():
     gbl.userObj = UserClass(mall_domain, login_token)
     gbl.trackObj = TrackingClass(mall_domain, login_token)
     gbl.dataConfigObj = DataConfigClass(mall_domain, login_token)
+    gbl.productObj = ProductClass(mall_domain, login_token)
+    gbl.homeObj = HomeClass(mall_domain, login_token)
+    gbl.orderObj = OrderClass(mall_domain, login_token)
