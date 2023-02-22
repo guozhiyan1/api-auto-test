@@ -19,7 +19,8 @@ class TestTracking:
     @pytest.mark.p0
     def test_tracking_add(self):
         with allure.step("前置数据处理"):
-            sql = f"""UPDATE ntr_envent_tracking_record SET delete_flag =1  WHERE user_ref='221125144616547003993168';"""
+            res_user_ref = '221125144616547003993168'
+            sql = f"""UPDATE ntr_envent_tracking_record SET delete_flag =1  WHERE user_ref='{res_user_ref}';"""
             updateDBData(gbl.env, 'benefits_test', sql)
         with allure.step("调用【用户行为】接口"):
             req_event_key = 'event_open_default'
@@ -28,14 +29,16 @@ class TestTracking:
             response = gbl.trackObj.tracking_add(event_key=req_event_key, device_name=req_device_name, trace_id=req_trace_id)
             data = response['data']
             assert 1 == data
-        # with allure.step("校验埋点表数据"):
-        #     sql = f"""SELECT event_key,channel,source,device_name FROM ntr_envent_tracking_record WHERE trace_id='{req_trace_id}' AND delete_flag=0  ORDER BY create_time DESC LIMIT 1;"""
-        #     res = selectDBData(gbl.env, 'benefits_test', sql)
-        #     data_event_key = res[0][0]
-        #     data_channel = res[0][1]
-        #     data_source = res[0][2]
-        #     data_device_name = res[0][3]
-        #     assert req_event_key == data_event_key
-        #     assert 'hy' == data_channel
-        #     assert 'H5' == data_source
-        #     assert req_device_name == data_device_name
+        with allure.step("校验埋点表数据"):
+            sql = f"""SELECT event_key,channel,source,trace_id,device_name FROM ntr_envent_tracking_record WHERE user_ref='{res_user_ref}' AND delete_flag=0  ORDER BY create_time DESC LIMIT 1;"""
+            res = selectDBData(gbl.env, 'benefits_test', sql)
+            data_event_key = res[0][0]
+            data_channel = res[0][1]
+            data_source = res[0][2]
+            data_trace_id = res[0][3]
+            data_device_name = res[0][4]
+            assert req_event_key == data_event_key
+            assert 'hy' == data_channel
+            assert 'H5' == data_source
+            assert req_trace_id == data_trace_id
+            assert req_device_name == data_device_name
