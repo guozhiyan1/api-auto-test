@@ -30,7 +30,7 @@ class TestTracking:
             data = response['data']
             assert 1 == data
         with allure.step("校验埋点表数据"):
-            sql = f"""SELECT event_key,channel,source,trace_id,device_name FROM ntr_envent_tracking_record WHERE user_ref='{res_user_ref}' AND delete_flag=0  ORDER BY create_time DESC LIMIT 1;"""
+            sql = f"""SELECT event_key,`channel`, `source`,trace_id,device_name FROM ntr_envent_tracking_record WHERE user_ref='{res_user_ref}' AND delete_flag=0  ORDER BY create_time DESC LIMIT 1;"""
             res = selectDBData(gbl.env, 'benefits_test', sql)
             data_event_key = res[0][0]
             data_channel = res[0][1]
