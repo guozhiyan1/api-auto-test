@@ -65,3 +65,13 @@ class TestUser:
             res_phone_no_mask = data["phoneNoMask"]
             check_value_true('17700000555', res_phone_no)
             check_value_true('177****0555', res_phone_no_mask)
+
+    @allure.story("同步微医云就诊人")
+    @allure.title("同步微医云就诊人")
+    @pytest.mark.test
+    @pytest.mark.p0
+    def test_sync(self):
+        with allure.step("调用【同步微医云就诊人】接口"):
+            response = gbl.userObj.sync()
+            data = response['data']
+            check_value_true('1', data)

@@ -56,7 +56,7 @@ class UserClass:
 
         return check_response(response)
 
-    def get_user(self,source='H5'):
+    def get_user(self, source='H5'):
         # 接口地址
         url = '/app/user/v1.0.0/getUser'
         params = {
@@ -64,5 +64,16 @@ class UserClass:
         }
         # 请求地址
         response = self.common.post(url, params=params, headers=self.headers, content="获取用户信息")
+
+        return check_response(response)
+
+    def sync(self, source='H5'):
+        # 接口地址
+        url = '/app/user_patient/v1.0.1/sync'
+        params = {
+            "source": source
+        }
+        # 请求地址
+        response = self.common.post(url, params=params, headers=self.headers, content="同步微医云就诊人")
 
         return check_response(response)
