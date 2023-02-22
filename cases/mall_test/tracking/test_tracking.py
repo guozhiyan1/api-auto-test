@@ -23,7 +23,7 @@ class TestTracking:
             res_user_ref = '221125144616547003993168'
             sql = f"""UPDATE ntr_envent_tracking_record SET delete_flag =1  WHERE user_ref='{res_user_ref}';"""
             updateDBData(gbl.env, 'benefits_test', sql)
-        with allure.step("调用【用户行为】接口"):
+        with allure.step("调用【新增埋点】接口"):
             req_event_key = 'event_open_default'
             req_device_name = 'api_test'
             req_trace_id = '56d9c760-aa3a-4750-8593-9b98ea9abcfe'

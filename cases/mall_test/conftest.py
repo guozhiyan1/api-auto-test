@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import os
 
+from service.mall.dataConfig.dataConfig_services import DataConfigClass
 from service.mall.tracking.tracking_services import TrackingClass
 from service.mall.user.user_services import UserClass
 from untils.log_helper import logger
@@ -39,3 +40,4 @@ def auth_login():
     login_token = loginObj.auth_login(phone_no=phone_no)["data"]
     gbl.userObj = UserClass(mall_domain, login_token)
     gbl.trackObj = TrackingClass(mall_domain, login_token)
+    gbl.dataConfigObj = DataConfigClass(mall_domain, login_token)
