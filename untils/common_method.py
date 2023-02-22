@@ -2,6 +2,8 @@ import random
 import datetime
 # from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from untils.log_helper import logger
+import pytest
 import yaml
 
 
@@ -38,6 +40,30 @@ def delta_datetime(days=None, months=None, years=None, hours=None, minutes=None,
     now_date = now_date.strftime("%Y-%m-%d %H:%M:%S")
 
     return now_date
+
+
+def check_value_true(v1, v2):
+    '''
+    断言为True
+    :param v1: 期望结果
+    :param v2: 实际结果
+    :return:
+    '''
+    v1 = v1 == '' and '空' or v1
+    pytest.assume(v1 == v2, f"【断言结果】--> 期望结果：{v1}, 实际结果：{v2}")
+    logger().info(f"【断言结果】--> 期望结果：{v1}, 实际结果：{v2}")
+
+
+def check_value_false(v1, v2):
+    '''
+    断言为Fasle
+    :param v1: 期望结果
+    :param v2: 实际结果
+    :return:
+    '''
+    v1 = v1 == '' and '空' or v1
+    pytest.assume(v1 != v2, f"【断言结果】--> 期望结果：不等于{v1}, 实际结果：{v2}")
+    logger().info(f"【断言结果】--> 期望结果：不等于{v1}, 实际结果：{v2}")
 
 
 def check_response(resp, msg=None, code='200'):

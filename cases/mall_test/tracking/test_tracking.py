@@ -6,6 +6,7 @@ import pytest
 import allure
 
 import module.globals as gbl
+from untils.common_method import check_value_true, check_value_false
 from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
@@ -28,7 +29,7 @@ class TestTracking:
             req_trace_id = '56d9c760-aa3a-4750-8593-9b98ea9abcfe'
             response = gbl.trackObj.tracking_add(event_key=req_event_key, device_name=req_device_name, trace_id=req_trace_id)
             data = response['data']
-            assert 1 == data
+            check_value_true(1, data)
         with allure.step("校验埋点表数据"):
             sql = f"""SELECT event_key,`channel`, `source`,trace_id,device_name FROM ntr_envent_tracking_record WHERE user_ref='{res_user_ref}' AND delete_flag=0  ORDER BY create_time DESC LIMIT 1;"""
             res = selectDBData(gbl.env, 'benefits_test', sql)
@@ -37,8 +38,8 @@ class TestTracking:
             data_source = res[0][2]
             data_trace_id = res[0][3]
             data_device_name = res[0][4]
-            assert req_event_key == data_event_key
-            assert 'hy' == data_channel
-            assert 'H5' == data_source
-            assert req_trace_id == data_trace_id
-            assert req_device_name == data_device_name
+            check_value_true(req_event_key, data_event_key)
+            check_value_true('hy', data_channel)
+            check_value_true('H5', data_source)
+            check_value_true(req_trace_id, data_trace_id)
+            check_value_true(req_device_name, data_device_name)

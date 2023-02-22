@@ -43,7 +43,7 @@ def selectDBData(env, db, sql, is_single=True):
             else:
                 cursor.executemany(sql)
             result = cursor.fetchall()
-            logging.info(f"【查询结果】{result}")
+            logging.info(f"【查询结果】--> {result}")
         # 关闭连接
         connect.commit()
 
