@@ -64,21 +64,23 @@ def saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate):
     nowtime = getNowTime()
 
     # 执行sql
-    sql = f'''INSERT INTO api_auto_data (project_name, total_case, pass_case, failed_case, pass_rate, create_time, update_time, is_deleted) 
-    VALUES ('{project_name}', {total_case}, {pass_case}, {failed_case}, '{pass_rate}', '{nowtime}', '{nowtime}', 0)'''
+    sql = f'''INSERT INTO api_auto_data (project_name, total_case, pass_case, failed_case, pass_rate,build_type, create_time, update_time, is_deleted) 
+    VALUES ('{project_name}', {total_case}, {pass_case}, {failed_case}, '{pass_rate}', '{build_type}', '{nowtime}', '{nowtime}', 0)'''
     updateDBData('qa', 'data_test_db', sql)
 
 
-def sendMsgRobot(project_name, notify_key, pass_rate):
+def sendMsgRobot(project_name, notify_key, pass_rate, build_type):
     """
     企业微信机器人发送消息
     :param project_name:
     :param notify_key:
+    :param pass_rate:
+    :param build_type:
     :return:
     """
 
     # 报告路径
-    allureReport = f"http://47.101.221.124:8080/job/{project_name}/allure/"
+    allureReport = f"http://47.101.221.124:5673/job/{project_name}/allure/"
 
     # 消息接收人
     upper_project_name = project_name.lower()
@@ -96,6 +98,7 @@ def sendMsgRobot(project_name, notify_key, pass_rate):
                  f"脚本情况(成功/失败/总数)：{pass_case}/{failed_case}/{total_case}\n" \
                  f"通过率：{pass_rate}\n" \
                  f"查看详情：{allureReport}\n" \
+                 f"构建类型：{build_type == 'flow' and '发布构建' or '定时/人工构建'}\n" \
                  f"执行时间：{getNowTime()}"
 
     # 消息体
@@ -127,9 +130,10 @@ if __name__ == '__main__':
     print(base_path)
     project_name = sys.argv[1]
     notify_key = sys.argv[2]
+    build_type = sys.argv[3]
     # project_name = 'mall_api_test'
     # notify_key = 'test'
-    logging.info(f"参数，{project_name}，{notify_key}")
+    logging.info(f"参数，{project_name}，{notify_key}, {build_type}")
 
     # 获取执行结果
     allureReportPath = f"/var/lib/jenkins/workspace/api_auto_test/report/{project_name}/allure-report/data/behaviors.csv"
@@ -138,10 +142,10 @@ if __name__ == '__main__':
     pass_rate = "%.2f" % (pass_case / total_case * 100) + "%"
 
     # 执行数据入库
-    saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate)
+    saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate, build_type)
 
     # 发送消息
     notify_key_list = notify_key.split(',')
     for notify_key in notify_key_list:
         notify_key = notify_key.lower()
-        sendMsgRobot(project_name, notify_key, pass_rate)
+        sendMsgRobot(project_name, notify_key, pass_rate, build_type)
