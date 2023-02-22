@@ -59,7 +59,7 @@ def get_case_num(filePath):
     return total_case, passed_total, not_pass_total
 
 
-def saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate):
+def saveCaseData(project_name, total_case, pass_case, failed_case, pass_rate, build_type):
     # 获取当前时间
     nowtime = getNowTime()
 
