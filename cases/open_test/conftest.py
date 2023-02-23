@@ -9,6 +9,7 @@ from service.mall.order.order_services import OrderClass
 from service.mall.product.product_services import ProductClass
 from service.mall.tracking.tracking_services import TrackingClass
 from service.mall.user.user_services import UserClass
+from service.open.oauth.auth_services import OAuthClass
 from untils.log_helper import logger
 from untils.common_method import readConfig
 import module.globals as gbl
@@ -18,9 +19,9 @@ sys.path.append(base_path)
 
 
 @pytest.fixture(scope='session', autouse=True)
-def auth_login():
+def get_token():
     # 配置文件路径
-    settings_file = 'mall.yml'
+    settings_file = 'open.yml'
     settings_file_path = Path(base_path).joinpath(settings_file)
 
     # 环境变量
@@ -29,17 +30,10 @@ def auth_login():
     logger().info(f"环境信息：{gbl.env}, 配置文件路径：{settings_file_path}")
 
     # 域名
-    mall_domain = env_config["mall_domain"]
+    open_domain = env_config["open_domain"]
 
-    # # 用户登录对象
-    loginObj = UserClass(mall_domain)
+    # # 获取oauth_token
+    loginObj = OAuthClass(open_domain)
 
-    phone_no = env_config["phone"]
-
-    login_token = loginObj.auth_login(phone_no=phone_no)["data"]
-    gbl.userObj = UserClass(mall_domain, login_token)
-    gbl.trackObj = TrackingClass(mall_domain, login_token)
-    gbl.dataConfigObj = DataConfigClass(mall_domain, login_token)
-    gbl.productObj = ProductClass(mall_domain, login_token)
-    gbl.homeObj = HomeClass(mall_domain, login_token)
-    gbl.orderObj = OrderClass(mall_domain, login_token)
+    oauth_token = loginObj.get_oauth_token()["data"]["tokenType"] + ' ' + loginObj.get_oauth_token()["data"]["accessToken"]
+    gbl.oauthObj = OAuthClass(open_domain, oauth_token)

@@ -14,6 +14,14 @@ class UserClass:
         }
 
     def auth_login(self, source='H5', merchant_code='hy', address_code=9120, phone_no='17700000555'):
+        """
+        授权登录
+        :param source:
+        :param merchant_code:
+        :param address_code:
+        :param phone_no:
+        :return:
+        """
         # 接口地址
         url = '/app/user/v1.0.0/auth_login'
         params = {
@@ -29,6 +37,15 @@ class UserClass:
         return check_response(response)
 
     def auth_login_cmcc(self, source='H5', chan_code='1608739200', address_code=9125, app_type='yncmcc', phone_no='17700000555'):
+        """
+        授权登录 - 云南和生活
+        :param source:来源
+        :param chan_code:
+        :param address_code:
+        :param app_type:yncmcc-云南和生活，shannxi-陕西和生活
+        :param phone_no:mock手机号
+        :return:
+        """
         # 接口地址
         url = '/app/user/v1.0.0/auth_login_cmcc'
         params = {
@@ -45,6 +62,12 @@ class UserClass:
         return check_response(response)
 
     def behavior(self, source='H5', user_id=''):
+        """
+        用户行为
+        :param source: 来源
+        :param user_id:
+        :return:
+        """
         # 接口地址
         url = '/app/user/v1.0.0/behavior'
         params = {
@@ -57,6 +80,11 @@ class UserClass:
         return check_response(response)
 
     def get_user(self, source='H5'):
+        """
+        获取用户信息
+        :param source: 来源
+        :return:
+        """
         # 接口地址
         url = '/app/user/v1.0.0/getUser'
         params = {
@@ -68,6 +96,11 @@ class UserClass:
         return check_response(response)
 
     def sync(self, source='H5'):
+        """
+        同步微医云就诊人
+        :param source: 来源
+        :return:
+        """
         # 接口地址
         url = '/app/user_patient/v1.0.1/sync'
         params = {
