@@ -11,11 +11,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("埋点记录")
 @allure.feature("埋点记录")
 class TestTracking:
     @allure.story("新增埋点")
-    @allure.title("新增埋点")
     @pytest.mark.test
     @pytest.mark.p0
     def test_tracking_add(self):

@@ -11,11 +11,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("订单模块-权益套餐包")
 @allure.feature("订单模块-权益套餐包")
 class TestOrderBenefitsMeal:
     @allure.story("根据产品编码获取套餐包")
-    @allure.title("根据产品编码获取套餐包")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_benefits_meal(self):
@@ -48,7 +46,6 @@ class TestOrderBenefitsMeal:
             check_value_false('', res_subjectCode)
 
     @allure.story("获取权益跳转url")
-    @allure.title("获取权益跳转url")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_benefits_target_url(self):
@@ -65,7 +62,6 @@ class TestOrderBenefitsMeal:
             check_value_false('', data)
 
     @allure.story("获取门户权益落地页")
-    @allure.title("获取门户权益落地页")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_portal_benefits_url(self):
