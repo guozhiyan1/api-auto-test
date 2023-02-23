@@ -37,7 +37,7 @@ class BaseApi(object):
         try:
             code = response['code']
             repeatCode = "200"
-            if repeatCode == code:
+            if repeatCode != code:
                 sleep(10)
                 res = requests.get(url, data=params, headers=headers)
                 response = res.json()
@@ -80,9 +80,9 @@ class BaseApi(object):
 
         # 接口发生异常，无msg字段，捕获打印接口返回
         try:
-            msg = response['message']
-            repeatMsg = "重复提交，请稍后再试"
-            if repeatMsg == msg:
+            code = response['code']
+            repeatCode = "200"
+            if repeatCode != code:
                 sleep(10)
                 res = requests.post(url, data=params, headers=headers)
                 response = res.json()

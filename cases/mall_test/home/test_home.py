@@ -11,11 +11,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("首页")
 @allure.feature("首页")
 class TestHome:
     @allure.story("授权产品列表")
-    @allure.title("授权产品列表")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_auth_productList(self):

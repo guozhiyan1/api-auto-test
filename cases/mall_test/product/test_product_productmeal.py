@@ -12,11 +12,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("产品模块 - 产品套餐")
 @allure.feature("产品模块 - 产品套餐")
 class TestProductOps:
     @allure.story("根据产品套餐编码获取产品套餐详情")
-    @allure.title("根据产品套餐编码获取产品套餐详情")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_product_meal(self):

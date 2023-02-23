@@ -12,11 +12,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("产品模块 - 视频")
 @allure.feature("产品模块 - 视频")
 class TestProductOps:
     @allure.story("根据类目获取视频列表")
-    @allure.title("根据类目获取视频列表")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_product_meal(self):
@@ -40,7 +38,6 @@ class TestProductOps:
             check_value_false(0, res_playAmount)
 
     @allure.story("根据视频ID获取视频详情")
-    @allure.title("根据视频ID获取视频详情")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_product_meal(self):

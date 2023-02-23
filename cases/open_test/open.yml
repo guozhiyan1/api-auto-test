@@ -1,0 +1,7 @@
+test:
+  # 域名
+  open_domain: "http://47.100.107.19:30002/open-api"
+
+uat:
+
+prod:

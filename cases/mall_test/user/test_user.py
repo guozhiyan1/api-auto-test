@@ -11,11 +11,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("用户模块")
 @allure.feature("用户")
 class TestUser:
     @allure.story("授权登录")
-    @allure.title("授权登录")
     @pytest.mark.test
     @pytest.mark.p0
     def test_auth_login(self):
@@ -25,7 +23,6 @@ class TestUser:
             check_value_false('', data)
 
     @allure.story("授权登录 - 云南和生活")
-    @allure.title("授权登录 - 云南和生活")
     @pytest.mark.test
     @pytest.mark.p0
     def test_auth_login_cmcc(self):
@@ -35,7 +32,6 @@ class TestUser:
             check_value_false('', data)
 
     @allure.story("用户行为")
-    @allure.title("用户行为")
     @pytest.mark.test
     @pytest.mark.p0
     def test_behavior(self):
@@ -54,7 +50,6 @@ class TestUser:
             check_value_true('1', behavior_type)
 
     @allure.story("获取用户信息")
-    @allure.title("获取用户信息")
     @pytest.mark.test
     @pytest.mark.p0
     def test_getUser(self):
@@ -67,7 +62,6 @@ class TestUser:
             check_value_true('177****0555', res_phone_no_mask)
 
     @allure.story("同步微医云就诊人")
-    @allure.title("同步微医云就诊人")
     @pytest.mark.test
     @pytest.mark.p0
     def test_sync(self):

@@ -11,11 +11,9 @@ from untils.db_tool import selectDBData
 from untils.db_tool import updateDBData
 
 
-@allure.epic("产品模块 - 运营位")
 @allure.feature("产品模块 - 运营位")
 class TestProductOps:
     @allure.story("获取运营位集合")
-    @allure.title("获取运营位集合")
     @pytest.mark.test
     @pytest.mark.p0
     def test_get_ops_list(self):
