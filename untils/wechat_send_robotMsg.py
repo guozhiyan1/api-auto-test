@@ -98,6 +98,7 @@ def sendMsgRobot(project_name, notify_key, pass_rate, build_type):
                  f"脚本情况(成功/失败/总数)：{pass_case}/{failed_case}/{total_case}\n" \
                  f"通过率：{pass_rate}\n" \
                  f"查看详情：{allureReport}\n" \
+                 f"执行环境：{notify_key == 'test' and '测试环境' or notify_key == 'pro' and '生产环境'}\n" \
                  f"构建类型：{build_type == 'flow' and '发布构建' or '定时/人工构建'}\n" \
                  f"执行时间：{getNowTime()}"
 
