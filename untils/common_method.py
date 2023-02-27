@@ -94,8 +94,6 @@ def check_response(resp, msg=None, code='200'):
     :return: dic_resp
     """
 
-    # print("function: check_response, 入参")
-    # print(resp)
     if msg:
         assert msg in resp['message']
         return resp
