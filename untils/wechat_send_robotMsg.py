@@ -12,7 +12,8 @@ from untils.db_tool import updateDBData
 
 # 机器人key
 keyDict = {
-    "test": "e9a62b13-5c43-45ad-ba74-4619be336f12"
+    "test": "e9a62b13-5c43-45ad-ba74-4619be336f12",
+    "flow": "4c9b2f5f-3a01-4c22-9b27-443ba7695b28"
 }
 # 测试联系人
 tester_contact = {
@@ -113,7 +114,13 @@ def sendMsgRobot(project_name, notify_key, pass_rate, build_type):
     }
 
     # 请求地址
-    key = keyDict[notify_key]
+    if notify_key == 'test' and build_type == 'flow':
+        # 发布触发只发flow机器人
+        key = keyDict[build_type]
+    else:
+        # 其余发测试小群
+        key = keyDict[notify_key]
+
     send_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={}".format(key)
 
     # 请求头

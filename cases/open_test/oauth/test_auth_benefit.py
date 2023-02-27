@@ -13,7 +13,7 @@ from untils.db_tool import updateDBData
 
 @allure.feature("权限模块-权益")
 class TestOAuth:
-    @allure.story("预分配权益-杭研")
+    @allure.story("预分配权益-杭研-开通权益")
     @pytest.mark.test
     @pytest.mark.p0
     def test_benefitAdd_openBenefits(self):
