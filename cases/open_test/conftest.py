@@ -3,12 +3,7 @@ from pathlib import Path
 import sys
 import os
 
-from service.mall.dataConfig.dataConfig_services import DataConfigClass
-from service.mall.home.home_services import HomeClass
-from service.mall.order.order_services import OrderClass
-from service.mall.product.product_services import ProductClass
-from service.mall.tracking.tracking_services import TrackingClass
-from service.mall.user.user_services import UserClass
+from service.open.notify.notify_services import NotifyClass
 from service.open.oauth.auth_services import OAuthClass
 from untils.log_helper import logger
 from untils.common_method import readConfig
@@ -37,3 +32,4 @@ def get_token():
 
     oauth_token = loginObj.get_oauth_token()["data"]["tokenType"] + ' ' + loginObj.get_oauth_token()["data"]["accessToken"]
     gbl.oauthObj = OAuthClass(open_domain, oauth_token)
+    # gbl.notifyObj = NotifyClass(open_domain)
