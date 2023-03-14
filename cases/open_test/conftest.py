@@ -32,4 +32,4 @@ def get_token():
 
     oauth_token = loginObj.get_oauth_token()["data"]["tokenType"] + ' ' + loginObj.get_oauth_token()["data"]["accessToken"]
     gbl.oauthObj = OAuthClass(open_domain, oauth_token)
-    # gbl.notifyObj = NotifyClass(open_domain)
+    gbl.notifyObj = NotifyClass(open_domain)
