@@ -75,5 +75,5 @@ class TestNotifyConsult:
             response = gbl.notifyObj.notify_renewCardno(cardNo='700453790129717253', renewCardNo='', renewActionType=2)
             data = response['data']
             check_value_false('', data)
-        with allure.step("调用【数据同步-退订会员卡号】接口"):
+        with allure.step("校验权益业务数据"):
             check_benefits_meal_detail_by_td(gbl.env, cardNo=req_cardNo)
