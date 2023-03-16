@@ -59,8 +59,8 @@ class TestNotifyConsult:
             check_value_false('', data)
         with allure.step("校验权益业务数据"):
             get_local_time_by0 = DateUtil.get_local_time_by0()
-            next_month_start = DateUtil.next_month_start()
-            check_benefits_meal_detail_by_xd(gbl.env, cardNo=req_renewCardNo, ben_start_time=get_local_time_by0, ben_end_time=next_month_start,
+            last_month_end = DateUtil.last_month_end()
+            check_benefits_meal_detail_by_xd(gbl.env, cardNo=req_renewCardNo, ben_start_time=get_local_time_by0, ben_end_time=last_month_end,
                                              con_start_time=req_end_time)
 
     @allure.story("数据同步 - 退订会员卡号")
