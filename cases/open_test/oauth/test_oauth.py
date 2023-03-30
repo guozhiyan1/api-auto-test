@@ -27,7 +27,7 @@ class TestOAuth:
     @pytest.mark.p0
     def test_oauth_refresh(self):
         with allure.step("调用【refreshToken刷新accessToken】接口"):
-            accessToken = 'B8EB823AF7819154F1BD64950DA557C9'
+            accessToken = 'A0A77A47D4553717F5B634930DCEA0ED'
             response = gbl.oauthObj.get_oauth_refresh(token=accessToken)
             data = response['data']['accessToken']
             check_value_false(accessToken, data)
