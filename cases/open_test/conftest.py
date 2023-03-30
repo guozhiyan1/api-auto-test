@@ -30,6 +30,8 @@ def get_token():
     # # 获取oauth_token
     loginObj = OAuthClass(open_domain)
 
-    oauth_token = loginObj.get_oauth_token()["data"]["tokenType"] + ' ' + loginObj.get_oauth_token()["data"]["accessToken"]
-    gbl.oauthObj = OAuthClass(open_domain, oauth_token)
+    oauth_rep = loginObj.get_oauth_token()
+    gbl.refresh_token = oauth_rep["data"]["refreshToken"]
+    gbl.oauth_token = oauth_rep["data"]["tokenType"] + ' ' + oauth_rep["data"]["accessToken"]
+    gbl.oauthObj = OAuthClass(open_domain, gbl.oauth_token)
     gbl.notifyObj = NotifyClass(open_domain)
