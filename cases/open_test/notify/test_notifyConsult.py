@@ -68,11 +68,14 @@ class TestNotifyConsult:
     @pytest.mark.p0
     def test_notify_renewCardno_td(self):
         with allure.step("前置数据处理"):
-            req_cardNo = '700453790129717253'
+            meal_detal_id = '230314130918160003384667'
+            sql = f"""SELECT card_no FROM nt_benefits_meal_detail WHERE id='{meal_detal_id}' and delete_flag='0' LIMIT 1;"""
+            res = selectDBData(gbl.env, 'benefits_test', sql)
+            req_cardNo = res[0][0]
             sql = f"""UPDATE nt_benefits_meal_detail SET card_no='{req_cardNo}',status=0 WHERE card_no='{req_cardNo}';"""
             updateDBData(gbl.env, 'benefits_test', sql)
         with allure.step("调用【数据同步-退订会员卡号】接口"):
-            response = gbl.notifyObj.notify_renewCardno(cardNo='700453790129717253', renewCardNo='', renewActionType=2)
+            response = gbl.notifyObj.notify_renewCardno(cardNo=req_cardNo, renewCardNo='', renewActionType=2)
             data = response['data']
             check_value_false('', data)
         with allure.step("校验权益业务数据"):
